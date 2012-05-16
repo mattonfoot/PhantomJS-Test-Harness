@@ -1,0 +1,10 @@
+{
+	"name" : "PhantomJS-Test-Harness",
+	"description" : "Commandline Test Runner for JavaScript",
+	"author" : "Matt smith <mattonfoot@laterooms.com> (http://mattonfoot.tumblr.com)",
+	"version" : "0.0.1",
+	"dependencies" : {
+		"glob": "3.x.x"
+	},
+	"engines" : [ "node >=0.6.0" ]
+}
