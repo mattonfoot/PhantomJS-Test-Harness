@@ -8,7 +8,7 @@ task('default', ['alltests:js'], function() {
 });
 
 namespace('alltests', function () {
-	
+
 	/*
 	phantomTask({
 		script: './lib/phantomjs-runner.js',
@@ -17,24 +17,34 @@ namespace('alltests', function () {
 	});
 	*/
 
+	desc('remove the existing Test Output Folder');
+	task('prepare', function() {
+		if (path.existsSync('TestResults')) {
+			wrench.rmdirSyncRecursive('TestResults');
+		}
+	});
+
+	desc('create the Test Output Folder');
+	directory('TestResults', ['test:prepare']);
+
 	task('js', function() {
-		var command = './lib/PhantomJS-Master/phantomjs.exe';
+		var command = './lib/PhantomJS/phantomjs.exe';
 		var params = [];
-		
+
 		params.push('./lib/phantomjs-runner.js'); // script
 		params.push('./TestResults'); // output
-				
+
 		var g = new require("glob").Glob('./tests/*.test.htm');
-				
+
 		g.on('end', function(files) {
 			files.forEach(function(file) {
 				params.push( file );
 			});
-			
+
 			phantomTestRunnerTask(command, params);
 		});
 	}, { async: true });
-	
+
 });
 
 function phantomTestRunnerTask(command, params) {
@@ -53,8 +63,8 @@ function phantomTestRunnerTask(command, params) {
 			complete();
 			return;
 		}
-		
+
 		fail('PhantomTask exited with code ' + code);
 	});
-	
+
 }

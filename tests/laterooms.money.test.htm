@@ -15,6 +15,13 @@
 	<ol id="qunit-tests"></ol>
 	<div id="qunit-fixture">test markup</div>
 
-	<script data-main="laterooms.money.fixture" src="../lib/requirejs/require.js"></script>
+	<script src="../src/laterooms.money.js"></script>
+
+	<script src="../lib/qunit/qunit.js"></script>
+	<script src="../lib/hamcrest/jshamcrest.js"></script>
+	<script>JsHamcrest.Integration.QUnit();</script>
+
+	<script src="./laterooms.money.test.js"></script>
+	<script src="./laterooms.money.european.test.js"></script>
 </body>
 </html>
